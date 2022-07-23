@@ -11,12 +11,12 @@ class GHCC:
         if r.status_code != requests.codes.ok:
             raise ValueError('Incorrect GitHub Username')
         soup = BeautifulSoup(r.content, 'html.parser')
-        self.calendar = []
+        self.days = []
         table = soup.find('svg').find('g')
 
         for column in table.find_all('g'):
             for cell in column.find_all('rect'):
-                self.calendar.append(
+                self.days.append(
                     {
                         'count': int(cell['data-count']),
                         'date': cell['data-date'],
@@ -26,15 +26,16 @@ class GHCC:
 
     @property
     def today(self) -> int:
-        if self.calendar[-1]['date'] != str(date.today()):
+        if self.days[-1]['date'] != str(date.today()):
             return -1
-        return self.calendar[-1]['count']
+        return self.days[-1]['count']
 
     @property
     def streak(self) -> int:
         s = 0
-        for day in reversed(self.calendar):
+        for day in reversed(self.days):
             if day['count'] == 0:
                 return s
             s += 1
         return s
+
