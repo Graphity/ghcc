@@ -41,6 +41,7 @@ class GHCC:
 
     @property
     def calendar(self) -> list:
+        # TODO (FIX): there are 12+ months in GitHub contributions calendar
         calendar = {}
         for day in self.days:
             d = date.fromisoformat(day['date'])
