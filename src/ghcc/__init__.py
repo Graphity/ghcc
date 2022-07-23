@@ -38,3 +38,14 @@ class GHCC:
                 break
             counter += 1
         return counter
+
+    @property
+    def calendar(self) -> list:
+        calendar = {}
+        for day in self.days:
+            d = date.fromisoformat(day['date'])
+            month = d.strftime('%b')
+            if month not in calendar:
+                calendar[month] = []
+            calendar[month].append(day)
+        return calendar
