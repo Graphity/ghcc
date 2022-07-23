@@ -32,10 +32,10 @@ class GHCC:
 
     @property
     def streak(self) -> int:
-        s = 0
+        counter = 0
         for day in reversed(self.days):
             if day['count'] == 0:
-                return s
-            s += 1
-        return s
+                break
+            counter += 1
+        return counter
 
