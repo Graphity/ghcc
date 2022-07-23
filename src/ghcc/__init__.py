@@ -1,10 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
+from datetime import date
 
 
 class GHCC:
     url = 'https://github.com/users/{}/contributions'
-    
+
     def __init__(self, username: str) -> None:
         r = requests.get(self.url.format(username))
         if r.status_code != requests.codes.ok:
@@ -25,6 +26,8 @@ class GHCC:
 
     @property
     def today(self) -> int:
+        if self.calendar[-1]['date'] != str(date.today()):
+            return -1
         return self.calendar[-1]['count']
 
     @property
