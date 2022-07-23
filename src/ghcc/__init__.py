@@ -40,7 +40,7 @@ class GHCC:
         return counter
 
     @property
-    def calendar(self) -> list:
+    def calendar(self) -> dict:
         # TODO (FIX): there are 12+ months in GitHub contributions calendar
         calendar = {}
         for day in self.days:
