@@ -38,4 +38,3 @@ class GHCC:
                 break
             counter += 1
         return counter
-
