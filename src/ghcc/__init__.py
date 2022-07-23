@@ -41,11 +41,10 @@ class GHCC:
 
     @property
     def calendar(self) -> dict:
-        # TODO (FIX): there are 12+ months in GitHub contributions calendar
         calendar = {}
         for day in self.days:
             d = date.fromisoformat(day['date'])
-            month = d.strftime('%b')
+            month = d.strftime('%y-%b')
             if month not in calendar:
                 calendar[month] = []
             calendar[month].append(day)
