@@ -49,3 +49,13 @@ class GHCC:
                 calendar[month] = []
             calendar[month].append(day)
         return calendar
+
+    @property
+    def months(self) -> list:
+        months = []
+        for day in self.days:
+            d = date.fromisoformat(day['date'])
+            month = d.strftime('%b %Y')
+            if month not in months:
+                months.append(month)
+        return months
