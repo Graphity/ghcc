@@ -53,9 +53,22 @@ class GHCC:
     @property
     def months(self) -> list:
         months = []
+        month = {
+            'name': '',
+            'days': []
+        }
         for day in self.days:
             d = date.fromisoformat(day['date'])
-            month = d.strftime('%b %Y')
-            if month not in months:
+            name = d.strftime('%b %Y')
+            if not month['name']:
+                month['name'] = name
+            if name == month['name']:
+                month['days'].append(day)
+            else:
                 months.append(month)
+                month = {
+                    'name': name,
+                    'days': [day]
+                }
+        months.append(month)
         return months
