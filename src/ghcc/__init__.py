@@ -84,3 +84,13 @@ class GHCC:
             else:
                 counter += 1
         return longest
+
+    @property
+    def passive(self) -> int:
+        counter = 0
+        for day in reversed(self.days):
+            if day['count'] == 0:
+                counter += 1
+            else:
+                break
+        return counter
