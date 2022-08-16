@@ -72,3 +72,15 @@ class GHCC:
                 }
         months.append(month)
         return months
+
+    @property
+    def longest_streak(self) -> int:
+        longest = 0
+        counter = 0
+        for day in self.days:
+            if day['count'] == 0:
+                longest = max(longest, counter)
+                counter = 0
+            else:
+                counter += 1
+        return longest
