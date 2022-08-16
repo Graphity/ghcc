@@ -86,7 +86,7 @@ class GHCC:
         return longest
 
     @property
-    def passive(self) -> int:
+    def passive_streak(self) -> int:
         counter = 0
         for day in reversed(self.days):
             if day['count'] == 0:
