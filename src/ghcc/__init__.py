@@ -31,15 +31,6 @@ class GHCC:
         return self.days[-1]['count']
 
     @property
-    def streak(self) -> int:
-        counter = 0
-        for day in reversed(self.days):
-            if day['count'] == 0:
-                break
-            counter += 1
-        return counter
-
-    @property
     def calendar(self) -> dict:
         calendar = {}
         for day in self.days:
@@ -72,6 +63,15 @@ class GHCC:
                 }
         months.append(month)
         return months
+
+    @property
+    def streak(self) -> int:
+        counter = 0
+        for day in reversed(self.days):
+            if day['count'] == 0:
+                break
+            counter += 1
+        return counter
 
     @property
     def longest_streak(self) -> int:
