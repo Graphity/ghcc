@@ -94,3 +94,15 @@ class GHCC:
             else:
                 break
         return counter
+
+    @property
+    def longest_passive_streak(self) -> int:
+        longest = 0
+        counter = 0
+        for day in self.days:
+            if day['count'] == 0:
+                counter += 1
+            else:
+                longest = max(longest, counter)
+                counter = 0
+        return longest
